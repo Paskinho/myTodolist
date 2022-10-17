@@ -11,7 +11,7 @@ function App() {
     //     { id: 4, title: "TS", isDone: false }
     // ]
 
-    let [tasks, setTasks] =useState( initialState: [
+    let [tasks, setTasks] = useState (initialState: [
         { id: 1, title: "HTML&CSS", isDone: true },
         { id: 2, title: "JS", isDone: true },
         { id: 3, title: "ReactJS", isDone: false },
@@ -25,12 +25,29 @@ function App() {
 }
 
 
+const filteredTasks=(filterValue:string)=>{
+console.log(filterValue)
+}
+    let afterFilterTasks=tasks
+
+if (filterValue === "Active")
+    return{
+        afterFilterTasks=tasks.filter(el=>el.isDone)
+    }
+    else if (filterValue === "Complited") return {
+    afterFilterTasks=tasks.filter(el=>el.!isDone)
+    }
+
+
+
+
 
     return (
         <div className="App">
             <Todolist title="What to learn"
-                      tasks={tasks}
+                      tasks={afterFilterTasks}
             removeTask={removeTasks}
+                      filteredTasks={filteredTasks}
             />
         </div>
     );
