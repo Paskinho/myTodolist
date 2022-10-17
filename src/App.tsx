@@ -11,13 +11,14 @@ function App() {
     //     { id: 4, title: "TS", isDone: false }
     // ]
 
-    let [tasks, setTasks] = useState (initialState: [
+    let [tasks, setTasks] = useState ( [
         { id: 1, title: "HTML&CSS", isDone: true },
         { id: 2, title: "JS", isDone: true },
         { id: 3, title: "ReactJS", isDone: false },
         { id: 4, title: "TS", isDone: false }
     ])
 
+let[filter,setFilter]=useState( 'All')
 
     const removeTasks=(taskID: number)=> {
         setTasks(tasks.filter(el=>el.id!==taskID))
@@ -25,20 +26,19 @@ function App() {
 }
 
 
-const filteredTasks=(filterValue:string)=>{
-console.log(filterValue)
-}
     let afterFilterTasks=tasks
-
-if (filterValue === "Active")
-    return{
+    if (filter === "Active")
+        {
+            afterFilterTasks=tasks.filter(el=>!el.isDone)
+        }
+     if (filter === "Complited") {
         afterFilterTasks=tasks.filter(el=>el.isDone)
     }
-    else if (filterValue === "Complited") return {
-    afterFilterTasks=tasks.filter(el=>el.!isDone)
-    }
 
 
+const filteredTasks=(filterValue:string)=>{
+    setFilter(filterValue)
+}
 
 
 
