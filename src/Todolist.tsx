@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterValuesType} from './App';
 import {log} from "util";
+import {Button} from "./components/Button";
 
 type TaskType = {
     id: string
@@ -43,7 +44,7 @@ export function Todolist(props: PropsType) {
 
 
 
-    const changeFilterTsarHsandler=(filterValue:FilterValuesType) => {
+    const changeFilterTsarHandler=(filterValue:FilterValuesType) => {
         props.changeFilter(filterValue)
     }
 
@@ -53,7 +54,8 @@ export function Todolist(props: PropsType) {
         <div>
             <input value={newTitle} onKeyDown={onKeyPressHandler}
                    onChange={onChangeHandler}/>
-            <button onClick={addTaskHandler}>+</button>
+            {/*<button onClick={addTaskHandler}>+</button>*/}
+            <Button name={'+'} callBack={addTaskHandler}/>
         </div>
         <ul>
             {
@@ -65,7 +67,8 @@ export function Todolist(props: PropsType) {
                         <li key={t.id}>
                             <input type="checkbox" checked={t.isDone}/>
                             <span>{t.title}</span>
-                            <button onClick={()=>removeTaskHandler(t.id)}>x</button>
+                            {/*<button onClick={()=>removeTaskHandler(t.id)}>x</button>*/}
+                            <Button name={"x"} callBack={()=>removeTaskHandler(t.id)}/>
                         </li>
                     )
 
@@ -73,9 +76,10 @@ export function Todolist(props: PropsType) {
             }
         </ul>
         <div>
-            <button onClick={() => changeFilterTsarHsandler('all')}>All</button>
-            <button onClick={() => changeFilterTsarHsandler('active')}>Active </button>
-            <button onClick={() => changeFilterTsarHsandler('completed')}>Completed</button>
+
+            <Button name={'All'} callBack={()=>changeFilterTsarHandler('all')}/>
+            <Button name={'Active'} callBack={()=>changeFilterTsarHandler('active')}/>
+            <Button name={'Completed'} callBack={()=>changeFilterTsarHandler('completed')}/>
         </div>
     </div>
 }
