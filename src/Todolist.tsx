@@ -37,8 +37,14 @@ export function Todolist(props: PropsType) {
         setNewTitle(event.currentTarget.value)
     }
 
-    const removeTaskHandler = () => {
-        props.removeTask(t.id)
+    const removeTaskHandler = (tID:string) => {
+        props.removeTask(tID)
+    }
+
+
+
+    const changeFilterTsarHsandler=(filterValue:FilterValuesType) => {
+        props.changeFilter(filterValue)
     }
 
 
@@ -59,7 +65,7 @@ export function Todolist(props: PropsType) {
                         <li key={t.id}>
                             <input type="checkbox" checked={t.isDone}/>
                             <span>{t.title}</span>
-                            <button onClick={removeTaskHandler}>x</button>
+                            <button onClick={()=>removeTaskHandler(t.id)}>x</button>
                         </li>
                     )
 
@@ -67,21 +73,9 @@ export function Todolist(props: PropsType) {
             }
         </ul>
         <div>
-            <button onClick={() => {
-                props.changeFilter("all")
-            }}>
-                All
-            </button>
-            <button onClick={() => {
-                props.changeFilter("active")
-            }}>
-                Active
-            </button>
-            <button onClick={() => {
-                props.changeFilter("completed")
-            }}>
-                Completed
-            </button>
+            <button onClick={() => changeFilterTsarHsandler('all')}>All</button>
+            <button onClick={() => changeFilterTsarHsandler('active')}>Active </button>
+            <button onClick={() => changeFilterTsarHsandler('completed')}>Completed</button>
         </div>
     </div>
 }
