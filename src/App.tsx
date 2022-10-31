@@ -182,7 +182,7 @@ function App() {
 
                     return <Todolist
                         key={index}
-                        id={index}
+                        todolistId={index}
                         title={tl.title}
                         tasks={tasksForTodolist}
                         students={tl.students}
